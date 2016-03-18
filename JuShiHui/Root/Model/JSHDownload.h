@@ -16,7 +16,7 @@
 
 #define IOS_VN [[UIDevice currentDevice].systemVersion doubleValue]
 
-@interface NLDownload : NSObject<NSURLConnectionDataDelegate>
+@interface JSHDownload : NSObject<NSURLConnectionDataDelegate>
 {
     AFHTTPSessionManager *manager; //创建请求（iOS 6-7）
     
@@ -29,7 +29,7 @@
 //    AFHTTPRequestOperation *operation;      //创建请求管理（用于上传和下载）
 }
 
-+ (NLDownload *)share;
++ (JSHDownload *)share;
 
 #pragma mark - 请求成功后的回调
 typedef void (^NLDownloadSuccess)(id information);

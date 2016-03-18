@@ -6,14 +6,14 @@
 //  Copyright (c) 2015年 newnewle.com. All rights reserved.
 //
 
-#import "NLDownload.h"
+#import "JSHDownload.h"
 #import "AFNetworking.h"
 #import "AFSecurityPolicy.h"
 #import "CoreNewFeatureVC.h"
 #define _AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES_
 
 
-@interface NLDownload (){
+@interface JSHDownload (){
     NSMutableData *dataa;
     id failure1;
     id success1;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation NLDownload
+@implementation JSHDownload
 {
     // AFN的客户端，使用基本地址初始化，同时会实例化一个操作队列，以便于后续的多线程处理
 
@@ -37,9 +37,9 @@
 @synthesize m_strURL = _strURL;
 
 
-+ (NLDownload *)share{
++ (JSHDownload *)share{
     
-    static NLDownload * nlDownload = nil;
+    static JSHDownload * nlDownload = nil;
     
     static dispatch_once_t onceToken;
     
@@ -401,40 +401,40 @@
 /*
  *  向服务器加载广告信息
  */
-- (void)getGuideImage
-{
-    [[NLDownload share]getWithUrl:GUIDE_URL withSuceess:^(id information) {
-   
-        NSMutableArray *imageArray = [NSMutableArray array];
-        
-        if ([[NSString stringWithFormat:@"%@", information[@"status"]]isEqualToString:@"200"]) {
-            
-            if ([information[@"data"] count]>0) {
-                
-                if ([information[@"data"][@"list"] count] != 0) {
-                    if (![[CoreArchive strForKey:@"guide"]isEqualToString:information[@"data"][@"list"][0][@"img"]]) {
-                        
-                        [CoreArchive setStr:information[@"data"][@"list"][0][@"img"] key:@"guideNew"];
-                        
-                        for (NSDictionary *dict in information[@"data"][@"list"]) {
-                            
-                            [imageArray addObject:dict[@"img"]];
-                            
-                        }
-                        //                    if ([CoreNewFeatureVC canShowGuide]){
-                        [self getImagesWithArray:imageArray];
-                        //                    }
-                    }
-                }
-
-            }
-        }
-    } failure:^(NSDictionary *errorDict, NSError *error) {
-        
-//        NSLog(@"%@", error.description);
-        
-    }];
-}
+//- (void)getGuideImage
+//{
+//    [[JSHDownload share]getWithUrl:GUIDE_URL withSuceess:^(id information) {
+//   
+//        NSMutableArray *imageArray = [NSMutableArray array];
+//        
+//        if ([[NSString stringWithFormat:@"%@", information[@"status"]]isEqualToString:@"200"]) {
+//            
+//            if ([information[@"data"] count]>0) {
+//                
+//                if ([information[@"data"][@"list"] count] != 0) {
+//                    if (![[CoreArchive strForKey:@"guide"]isEqualToString:information[@"data"][@"list"][0][@"img"]]) {
+//                        
+//                        [CoreArchive setStr:information[@"data"][@"list"][0][@"img"] key:@"guideNew"];
+//                        
+//                        for (NSDictionary *dict in information[@"data"][@"list"]) {
+//                            
+//                            [imageArray addObject:dict[@"img"]];
+//                            
+//                        }
+//                        //                    if ([CoreNewFeatureVC canShowGuide]){
+//                        [self getImagesWithArray:imageArray];
+//                        //                    }
+//                    }
+//                }
+//
+//            }
+//        }
+//    } failure:^(NSDictionary *errorDict, NSError *error) {
+//        
+////        NSLog(@"%@", error.description);
+//        
+//    }];
+//}
 
 
 - (void)getImagesWithArray:(NSArray *)array
