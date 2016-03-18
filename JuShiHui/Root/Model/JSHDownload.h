@@ -12,7 +12,7 @@
 #import "RemoteImgListOperator.h"
 #import "NLLink.h"
 #import "AFNetworking.h"
-//#import "tools.h"
+#import "tools.h"
 
 #define IOS_VN [[UIDevice currentDevice].systemVersion doubleValue]
 
